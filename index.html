@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="RM Assistência: assistência técnica especializada em celulares, computadores, notebooks, videogames e controles em São Bernardo do Campo." />
+  <meta name="theme-color" content="#071006" />
+  <title>RM Assistência | Seu aparelho em boas mãos</title>
+  <style>
+    :root {
+      --ink: #050805;
+      --panel: #0c120c;
+      --panel-raised: #121b12;
+      --lime: #a7f22a;
+      --lime-bright: #c6ff50;
+      --lime-dark: #558e08;
+      --chalk: #f6f8ef;
+      --muted: #b5bcae;
+      --line: rgba(198, 255, 80, .22);
+      --danger: #ff6545;
+      --shadow: 0 28px 80px rgba(0, 0, 0, .45);
+      --content: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 320px;
+      color: var(--chalk);
+      background: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -3;
+      opacity: .27;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(167, 242, 42, .09) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(167, 242, 42, .09) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: linear-gradient(to bottom, black, transparent 78%);
+    }
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+      background: radial-gradient(circle at 78% 12%, rgba(127, 237, 20, .12), transparent 24rem), radial-gradient(circle at 10% 70%, rgba(99, 181, 18, .11), transparent 25rem);
+    }
+    a { color: inherit; text-decoration: none; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    img { display: block; max-width: 100%; }
+    .shell { width: min(calc(100% - 2.5rem), var(--content)); margin-inline: auto; }
+    .skip-link { position: fixed; top: -5rem; left: 1rem; z-index: 99; padding: .8rem 1rem; color: var(--ink); background: var(--lime); font-weight: 800; }
+    .skip-link:focus { top: 1rem; }
+
+    .site-header { position: absolute; z-index: 20; inset: 0 0 auto; padding-block: 1.1rem; }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .brand { display: inline-flex; align-items: center; gap: .7rem; font-weight: 900; letter-spacing: -.06em; font-size: 1.15rem; }
+    .brand-mark { display: grid; place-items: center; width: 2.6rem; aspect-ratio: 1; background: var(--lime); color: var(--ink); clip-path: polygon(22% 0, 100% 0, 100% 78%, 78% 100%, 0 100%, 0 22%); font-size: 1.05rem; }
+    .brand small { display: block; color: var(--lime); font-size: .54rem; letter-spacing: .18em; margin-bottom: .18rem; }
+    .nav-links { display: none; gap: 1.4rem; color: var(--muted); font-size: .86rem; font-weight: 700; }
+    .nav-links a:hover { color: var(--lime); }
+    .nav-action { padding: .65rem .82rem; border: 1px solid var(--line); color: var(--lime); font-size: .76rem; font-weight: 800; white-space: nowrap; }
+
+    .hero { position: relative; isolation: isolate; padding: 8.25rem 0 4.4rem; min-height: 700px; overflow: hidden; }
+    .hero-grid { display: grid; gap: 2.2rem; align-items: center; }
+    .hero-copy { position: relative; z-index: 2; }
+    .kicker { display: inline-flex; align-items: center; gap: .6rem; margin-bottom: 1.15rem; color: var(--lime); font-size: .72rem; font-weight: 900; letter-spacing: .09em; }
+    .kicker::before { content: ""; width: 1.55rem; height: 2px; background: currentColor; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2, h3 { font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif; font-weight: 700; text-transform: uppercase; line-height: .9; }
+    h1 { max-width: 9ch; margin-bottom: 1.25rem; font-size: clamp(3.4rem, 11vw, 7.65rem); letter-spacing: .015em; }
+    h1 em { color: var(--lime); font-style: normal; }
+    .hero-copy > p { max-width: 37rem; color: var(--muted); font-size: clamp(1rem, 2.5vw, 1.12rem); line-height: 1.65; }
+    .hero-copy strong { color: var(--chalk); }
+    .cta-row { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.7rem; }
+    .cta { display: inline-flex; align-items: center; justify-content: center; gap: .65rem; min-height: 3.35rem; padding: .9rem 1.1rem; border: 1px solid transparent; font-weight: 900; font-size: .88rem; transition: transform .22s ease, box-shadow .22s ease, background .22s ease; }
+    .cta:hover { transform: translateY(-3px); }
+    .cta-primary { color: var(--ink); background: var(--lime); box-shadow: 0 14px 35px rgba(167, 242, 42, .2); }
+    .cta-primary:hover { background: var(--lime-bright); box-shadow: 0 20px 45px rgba(167, 242, 42, .3); }
+    .cta-ghost { border-color: rgba(246, 248, 239, .27); color: var(--chalk); }
+    .trust-line { display: flex; flex-wrap: wrap; align-items: center; gap: .8rem 1.1rem; margin-top: 2rem; color: var(--muted); font-size: .78rem; font-weight: 700; }
+    .trust-line span { display: inline-flex; align-items: center; gap: .4rem; }
+    .trust-line b { color: var(--lime); font-size: 1.1rem; }
+
+    .hero-visual { position: relative; min-height: 370px; }
+    .orb { position: absolute; width: 18rem; aspect-ratio: 1; border-radius: 50%; background: var(--lime); filter: blur(1px); opacity: .85; right: -4rem; top: 4rem; box-shadow: 0 0 100px rgba(167, 242, 42, .45); }
+    .device-stage { position: absolute; inset: 1rem 0 0 1rem; border: 1px solid var(--line); background: linear-gradient(135deg, rgba(167, 242, 42, .13), rgba(8, 11, 8, .4) 42%, rgba(8, 11, 8, .9)); clip-path: polygon(0 8%, 8% 0, 100% 0, 100% 89%, 92% 100%, 0 100%); overflow: hidden; box-shadow: var(--shadow); }
+    .device-stage::before { content: ""; position: absolute; inset: 0; background: linear-gradient(120deg, transparent 20%, rgba(255,255,255,.12) 42%, transparent 53%); transform: translateX(-100%); animation: scan 6s ease-in-out infinite; }
+    .image-slot { position: relative; width: 100%; height: 100%; overflow: hidden; background: linear-gradient(145deg, #172317, #0c110c); }
+    .image-slot img { width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .35s ease; }
+    .image-slot.has-image img { opacity: 1; }
+    .slot-label { position: absolute; left: 1rem; bottom: 1rem; z-index: 2; max-width: 14rem; padding: .6rem .75rem; border-left: 3px solid var(--lime); color: var(--chalk); background: rgba(5, 8, 5, .82); font-size: .68rem; line-height: 1.35; font-weight: 800; }
+    .hero-chip { position: absolute; z-index: 3; right: -.3rem; bottom: 1.7rem; width: 11.5rem; padding: .95rem; color: var(--ink); background: var(--lime); box-shadow: var(--shadow); transform: rotate(-5deg); }
+    .hero-chip strong { display: block; font-family: Impact, sans-serif; font-size: 1.35rem; line-height: .9; text-transform: uppercase; }
+    .hero-chip span { display: block; margin-top: .35rem; font-size: .68rem; font-weight: 800; }
+
+    .ticker { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); overflow: hidden; background: var(--panel); }
+    .ticker-track { display: flex; width: max-content; animation: marquee 28s linear infinite; }
+    .ticker-track span { display: inline-flex; align-items: center; gap: 1.8rem; padding: .95rem 1.8rem; color: var(--lime); white-space: nowrap; font-family: Impact, sans-serif; font-size: 1.2rem; letter-spacing: .055em; text-transform: uppercase; }
+    .ticker-track span::after { content: "✦"; color: var(--chalk); font-size: .85rem; }
+
+    section { padding-block: 5.5rem; }
+    .section-heading { display: grid; gap: 1rem; margin-bottom: 2rem; }
+    .section-heading p { max-width: 42rem; margin: 0; color: var(--muted); line-height: 1.6; }
+    h2 { max-width: 16ch; margin: 0; font-size: clamp(2.5rem, 7vw, 5.2rem); letter-spacing: .01em; }
+    h2 .lime { color: var(--lime); }
+
+    .services { position: relative; }
+    .services-grid { display: grid; gap: .85rem; perspective: 1200px; }
+    .service-card { position: relative; min-height: 242px; padding: 1.4rem; border: 1px solid rgba(246, 248, 239, .13); background: linear-gradient(145deg, rgba(26, 36, 25, .87), rgba(10, 15, 10, .96)); overflow: hidden; transform-style: preserve-3d; will-change: transform; transition: border-color .2s ease, box-shadow .2s ease; }
+    .service-card:hover { border-color: var(--lime); box-shadow: 0 26px 55px rgba(0,0,0,.35); }
+    .service-card::after { content: ""; position: absolute; inset: 0; opacity: .7; background: linear-gradient(125deg, transparent 55%, rgba(167, 242, 42, .14)); pointer-events: none; }
+    .card-number { position: absolute; top: .5rem; right: .8rem; color: rgba(167,242,42,.17); font-family: Impact, sans-serif; font-size: 5.2rem; line-height: 1; }
+    .service-icon { display: grid; place-items: center; position: relative; z-index: 1; width: 3rem; aspect-ratio: 1; margin-bottom: 2.9rem; border: 1px solid var(--lime); color: var(--lime); font-size: 1.35rem; transform: translateZ(35px); }
+    .service-card h3 { position: relative; z-index: 1; margin-bottom: .65rem; font-size: 1.78rem; letter-spacing: .025em; transform: translateZ(25px); }
+    .service-card p { position: relative; z-index: 1; margin: 0; max-width: 29ch; color: var(--muted); font-size: .9rem; line-height: 1.5; transform: translateZ(15px); }
+    .tap-note { margin-top: 1rem; color: var(--muted); font-size: .76rem; }
+
+    .proof { padding-top: 1rem; }
+    .proof-layout { display: grid; gap: 1rem; }
+    .guarantee { position: relative; isolation: isolate; padding: clamp(1.8rem, 6vw, 4rem); min-height: 425px; overflow: hidden; background: var(--lime); color: var(--ink); }
+    .guarantee::after { content: "90"; position: absolute; right: -1rem; bottom: -2rem; z-index: -1; color: rgba(5,8,5,.1); font-family: Impact, sans-serif; font-size: min(48vw, 27rem); line-height: .8; }
+    .guarantee .kicker { color: #2d5900; }
+    .guarantee h2 { max-width: 7ch; font-size: clamp(3.5rem, 11vw, 7.7rem); }
+    .guarantee p { max-width: 30rem; font-weight: 700; line-height: 1.6; }
+    .guarantee strong { color: #2d5900; }
+    .warranty-stamp { display: inline-flex; flex-direction: column; justify-content: center; width: 8.8rem; aspect-ratio: 1; margin-top: 1.3rem; padding: 1rem; border: 4px solid var(--ink); border-radius: 50%; text-align: center; transform: rotate(-10deg); }
+    .warranty-stamp b { font-family: Impact, sans-serif; font-size: 1.9rem; line-height: .9; }
+    .warranty-stamp span { font-size: .65rem; font-weight: 900; }
+    .partner { display: flex; flex-direction: column; justify-content: space-between; min-height: 425px; padding: clamp(1.8rem, 5vw, 3rem); border: 1px solid var(--line); background: linear-gradient(145deg, #101b0f, #080d08); }
+    .partner .eyebrow { color: var(--lime); font-size: .76rem; font-weight: 900; }
+    .partner h2 { max-width: 8ch; margin-block: .85rem 1rem; }
+    .partner p { max-width: 32rem; color: var(--muted); line-height: 1.65; }
+    .partner .cta { align-self: flex-start; }
+
+    .gallery { padding-bottom: 0; }
+    .gallery-grid { display: grid; gap: .8rem; }
+    .gallery-card { position: relative; min-height: 305px; border: 1px solid var(--line); overflow: hidden; background: var(--panel-raised); }
+    .gallery-card.tall { min-height: 470px; }
+    .gallery-card .image-slot { position: absolute; inset: 0; }
+    .gallery-card .image-slot::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(3,6,3,.94), rgba(3,6,3,.04) 67%); }
+    .gallery-caption { position: absolute; z-index: 2; right: 1rem; bottom: 1rem; left: 1rem; }
+    .gallery-caption span { color: var(--lime); font-size: .7rem; font-weight: 900; }
+    .gallery-caption h3 { margin: .35rem 0 0; font-size: 2rem; }
+
+    .location { padding-bottom: 6rem; }
+    .location-grid { display: grid; gap: 1rem; align-items: stretch; }
+    .address { display: flex; flex-direction: column; padding: clamp(1.6rem, 5vw, 3rem); background: #f2f7e9; color: var(--ink); }
+    .address h2 { max-width: 8ch; font-size: clamp(3rem, 9vw, 5.5rem); }
+    .address p { max-width: 25rem; color: #2e332d; line-height: 1.6; font-weight: 650; }
+    .address .address-line { display: flex; gap: .75rem; align-items: flex-start; margin-top: auto; padding-top: 2rem; font-weight: 800; }
+    .address .pin { flex: 0 0 auto; display: grid; place-items: center; width: 2.4rem; aspect-ratio: 1; color: var(--lime); background: var(--ink); }
+    .map-wrap { min-height: 345px; border: 1px solid var(--line); filter: grayscale(1) contrast(1.12) brightness(.8) hue-rotate(37deg); }
+    .map-wrap iframe { width: 100%; height: 100%; min-height: 345px; border: 0; }
+
+    .footer { padding: 3rem 0 6.5rem; border-top: 1px solid var(--line); background: #030503; }
+    .footer-grid { display: grid; gap: 2.2rem; }
+    .footer-copy { max-width: 31rem; color: var(--muted); line-height: 1.65; font-size: .92rem; }
+    .footer-links { display: grid; gap: .7rem; align-content: start; }
+    .footer-links a { display: inline-flex; align-items: center; gap: .6rem; color: var(--chalk); font-weight: 750; }
+    .footer-links a:hover { color: var(--lime); }
+    .copyright { margin-top: 2.8rem; padding-top: 1rem; border-top: 1px solid rgba(246,248,239,.1); color: #788172; font-size: .72rem; }
+
+    .whatsapp-icon { width: 1.1em; height: 1.1em; flex: 0 0 auto; fill: currentColor; }
+    .whatsapp-float { display: inline-grid; place-items: center; position: fixed; z-index: 30; right: 1.15rem; bottom: 1.15rem; width: 3.85rem; aspect-ratio: 1; border: 2px solid var(--ink); border-radius: 50%; color: var(--ink); background: var(--lime); box-shadow: 0 12px 33px rgba(0,0,0,.42); animation: pulse 2.5s ease-in-out infinite; }
+    .whatsapp-float .whatsapp-icon { width: 1.8rem; height: 1.8rem; }
+    .whatsapp-float::after { content: "Falar no WhatsApp"; position: absolute; right: 4.5rem; padding: .55rem .75rem; color: var(--chalk); background: var(--panel-raised); white-space: nowrap; font-size: .68rem; font-weight: 800; opacity: 0; transform: translateX(.4rem); pointer-events: none; transition: .2s ease; }
+    .whatsapp-float:hover::after, .whatsapp-float:focus-visible::after { opacity: 1; transform: translateX(0); }
+    .gallery-caption { max-width: calc(100% - 2rem); }
+    .gallery-caption h3 { font-size: clamp(1.5rem, 3vw, 2rem); line-height: .96; }
+
+    [data-reveal] { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.8,.2,1); }
+    [data-reveal].is-visible { opacity: 1; transform: translateY(0); }
+    :focus-visible { outline: 3px solid var(--lime-bright); outline-offset: 4px; }
+    @keyframes scan { 45%, 100% { transform: translateX(145%); } }
+    @keyframes marquee { to { transform: translateX(-50%); } }
+    @keyframes pulse { 0%, 100% { transform: scale(1); box-shadow: 0 12px 33px rgba(0,0,0,.42); } 50% { transform: scale(1.08); box-shadow: 0 0 0 10px rgba(167,242,42,.08), 0 12px 33px rgba(0,0,0,.42); } }
+
+    @media (min-width: 650px) {
+      .hero { min-height: 745px; padding-top: 9rem; }
+      .hero-visual { min-height: 485px; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-card.tall { grid-row: span 2; }
+      .location-grid { grid-template-columns: .85fr 1.15fr; }
+      .footer-grid { grid-template-columns: 1.25fr .75fr; }
+    }
+    @media (min-width: 920px) {
+      .site-header { padding-block: 1.3rem; }
+      .nav-links { display: flex; }
+      .hero { padding-block: 9.5rem 5.5rem; }
+      .hero-grid { grid-template-columns: 1.05fr .95fr; gap: 3.5rem; }
+      .hero-visual { min-height: 575px; }
+      .device-stage { inset: 0 0 0 2rem; }
+      .services-grid { grid-template-columns: repeat(4, 1fr); }
+      .service-card { min-height: 300px; }
+      .proof-layout { grid-template-columns: 1.12fr .88fr; }
+      .gallery-grid { grid-template-columns: 1.25fr .9fr .9fr; grid-template-rows: 1fr 1fr; }
+      .gallery-card.tall { grid-row: span 2; }
+      .gallery-card:nth-child(2), .gallery-card:nth-child(3) { min-height: 0; }
+      .footer { padding-bottom: 3rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+      [data-reveal] { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <header class="site-header">
+    <nav class="nav shell" aria-label="Navegação principal">
+      <a class="brand" href="#inicio" aria-label="RM Assistência - início">
+        <span class="brand-mark" aria-hidden="true">RM</span>
+        <span><small>ASSISTÊNCIA TÉCNICA</small>RM Assistência</span>
+      </a>
+      <div class="nav-links">
+        <a href="#servicos">Serviços</a>
+        <a href="#garantia">Garantia</a>
+        <a href="#parceiros">Parceiros</a>
+        <a href="#localizacao">Localização</a>
+      </div>
+      <a class="nav-action" href="https://www.instagram.com/rm_assistencia/" target="_blank" rel="noopener noreferrer">Instagram</a>
+    </nav>
+  </header>
+
+  <main id="conteudo">
+    <section class="hero" id="inicio">
+      <div class="shell hero-grid">
+        <div class="hero-copy" data-reveal>
+          <div class="kicker">São Bernardo do Campo</div>
+          <h1>Seu aparelho em <em>boas mãos.</em></h1>
+          <p>Da tela quebrada ao computador que precisa de desempenho: diagnóstico técnico, <strong>peças de qualidade e serviço com garantia.</strong></p>
+          <div class="cta-row">
+            <a class="cta cta-primary" href="https://wa.me/5511994358861?text=Olá!%20Quero%20solicitar%20um%20orçamento." target="_blank" rel="noopener noreferrer"><svg class="whatsapp-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M16.02 3C8.83 3 3 8.83 3 16.02c0 2.3.6 4.54 1.74 6.51L3 29l6.66-1.7a12.96 12.96 0 0 0 6.36 1.66h.01C23.2 28.96 29 23.18 29 16S23.2 3 16.02 3Zm0 23.77c-2 0-3.96-.54-5.67-1.55l-.4-.24-3.95 1.01 1.06-3.85-.26-.4a10.71 10.71 0 1 1 9.22 5.03Zm5.87-8.02c-.32-.16-1.88-.93-2.17-1.04-.29-.11-.5-.16-.71.16-.21.32-.81 1.04-.99 1.25-.18.21-.36.24-.68.08-.32-.16-1.33-.49-2.54-1.57-.94-.84-1.58-1.88-1.76-2.2-.18-.32-.02-.49.14-.65.14-.14.32-.36.48-.54.16-.18.21-.32.32-.53.11-.21.05-.4-.03-.56-.08-.16-.71-1.71-.97-2.34-.26-.62-.52-.53-.71-.54h-.61c-.21 0-.56.08-.85.4-.29.32-1.12 1.09-1.12 2.65s1.15 3.06 1.31 3.28c.16.21 2.26 3.45 5.47 4.84.76.33 1.36.53 1.82.68.77.24 1.47.21 2.02.13.62-.09 1.88-.77 2.15-1.52.26-.75.26-1.39.18-1.52-.08-.13-.29-.21-.61-.37Z"/></svg> Solicitar orçamento</a>
+            <a class="cta cta-ghost" href="#servicos">Ver serviços <span aria-hidden="true">↓</span></a>
+          </div>
+          <div class="trust-line" aria-label="Diferenciais RM Assistência">
+            <span><b>✓</b> Orçamento sem compromisso</span>
+            <span><b>✓</b> Garantia legal de 90 dias</span>
+            <span><b>✓</b> Atendimento rápido</span>
+          </div>
+        </div>
+        <div class="hero-visual" data-reveal>
+          <div class="orb" aria-hidden="true"></div>
+          <div class="device-stage">
+            <!-- Substitua o src abaixo pela arte "Seu aparelho em boas mãos" enviada. -->
+            <div class="image-slot" data-image-slot>
+              <img class="img-hero" src="assets/banner-seu-aparelho-em-boas-maos.jpg" alt="Aparelhos atendidos pela RM Assistência" />
+              <span class="slot-label">Imagem principal: insira aqui o banner “Seu aparelho em boas mãos”.</span>
+            </div>
+          </div>
+          <div class="hero-chip"><strong>Qualidade<br>que fica.</strong><span>Peças e serviço à altura do seu aparelho.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="ticker" aria-hidden="true"><div class="ticker-track"><span>Celulares</span><span>Notebooks</span><span>Videogames</span><span>Controles</span><span>Tablets</span><span>Computadores</span><span>Celulares</span><span>Notebooks</span><span>Videogames</span><span>Controles</span><span>Tablets</span><span>Computadores</span></div></div>
+
+    <section class="services shell" id="servicos">
+      <div class="section-heading" data-reveal>
+        <div class="kicker">Especialidades técnicas</div>
+        <h2>Reparo certo para cada <span class="lime">equipamento.</span></h2>
+        <p>Toque ou mova o cursor sobre os cards. Cada atendimento começa com uma avaliação clara para você decidir com segurança.</p>
+      </div>
+      <div class="services-grid">
+        <article class="service-card" data-tilt data-reveal><span class="card-number">01</span><div class="service-icon" aria-hidden="true">▣</div><h3>Celulares e tablets</h3><p>Troca de telas, conectores de carga, baterias, câmeras, microfones, rede/sinal e biometria.</p></article>
+        <article class="service-card" data-tilt data-reveal><span class="card-number">02</span><div class="service-icon" aria-hidden="true">⌘</div><h3>PC e notebook</h3><p>Manutenção em geral, upgrades de memória RAM, SSD, processador, placa de vídeo e periféricos.</p></article>
+        <article class="service-card" data-tilt data-reveal><span class="card-number">03</span><div class="service-icon" aria-hidden="true">✣</div><h3>Games e controles</h3><p>Manutenção especializada em videogames e controles para você voltar a jogar com tranquilidade.</p></article>
+        <article class="service-card" data-tilt data-reveal><span class="card-number">04</span><div class="service-icon" aria-hidden="true">▰</div><h3>Desbloqueios</h3><p>Desbloqueios em geral: FRP, MDM, PAYJOY e outros, com orientação técnica responsável.</p></article>
+      </div>
+      <p class="tap-note">No celular, toque em um card para ativar a interação.</p>
+    </section>
+
+    <section class="proof shell" id="garantia">
+      <div class="proof-layout">
+        <article class="guarantee" data-reveal>
+          <div class="kicker">Proteção de verdade</div>
+          <h2>Garantia que vai além do reparo.</h2>
+          <p>Todo serviço tem a <strong>garantia legal de 90 dias.</strong> E, em aparelhos elegíveis, usamos peças genuínas com <strong>garantia de 1 ano.</strong></p>
+          <div class="warranty-stamp"><b>1 ANO</b><span>EM PEÇAS GENUÍNAS ELEGÍVEIS</span></div>
+        </article>
+        <article class="partner" id="parceiros" data-reveal>
+          <div>
+            <div class="eyebrow">Parceria B2B</div>
+            <h2>Seu volume merece condições melhores.</h2>
+            <p>Prestamos serviços para lojistas com preços diferenciados. Tenha uma assistência parceira para agilizar seus reparos e atender melhor seus clientes.</p>
+          </div>
+          <a class="cta cta-primary" href="https://wa.me/5511994358861?text=Olá!%20Tenho%20uma%20loja%20e%20quero%20conhecer%20a%20parceria%20B2B." target="_blank" rel="noopener noreferrer">Quero ser parceiro <span aria-hidden="true">↗</span></a>
+        </article>
+      </div>
+    </section>
+
+    <section class="gallery shell" aria-labelledby="galeria-titulo">
+      <div class="section-heading" data-reveal>
+        <div class="kicker">Estrutura e resultados</div>
+        <h2 id="galeria-titulo">Tecnologia que volta a <span class="lime">funcionar.</span></h2>
+      </div>
+      <div class="gallery-grid">
+        <article class="gallery-card tall" data-reveal>
+          <!-- Insira a foto da placa aberta enviada. -->
+          <div class="image-slot" data-image-slot><img class="img-reparo-placa" src="assets/reparo-em-placa.jpg" alt="Reparo técnico em placa de celular" /></div>
+          <div class="gallery-caption"><span>Reparo técnico</span><h3>Precisão em cada componente.</h3></div>
+        </article>
+        <article class="gallery-card" data-reveal>
+          <!-- Insira a arte de upgrades PC Gamer enviada. -->
+          <div class="image-slot" data-image-slot><img class="img-promo-1" src="assets/promo-upgrade-pc-gamer.jpg" alt="Upgrade para computador gamer" /></div>
+          <div class="gallery-caption"><span>Computadores</span><h3>Mais potência para sua rotina.</h3></div>
+        </article>
+        <article class="gallery-card" data-reveal>
+          <!-- Insira a arte do iPhone com tela quebrada enviada. -->
+          <div class="image-slot" data-image-slot><img class="img-promo-2" src="assets/promo-troca-de-tela.jpg" alt="Troca de tela de celular" /></div>
+          <div class="gallery-caption"><span>Celulares</span><h3>Sua tela nova começa aqui.</h3></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="location shell" id="localizacao">
+      <div class="location-grid">
+        <div class="address" data-reveal>
+          <div class="kicker">Visite a RM</div>
+          <h2>Seu reparo, perto de você.</h2>
+          <p>Traga seu equipamento para avaliação. Conte com uma equipe preparada para orientar o melhor caminho para o seu caso.</p>
+          <div class="address-line"><span class="pin" aria-hidden="true">●</span><span>R. Mal. Rondon, 15 — Centro<br>São Bernardo do Campo — SP<br>09720-120, Brasil</span></div>
+        </div>
+        <div class="map-wrap" data-reveal><iframe title="Mapa da RM Assistência em São Bernardo do Campo" src="https://www.google.com/maps?q=R.%20Mal.%20Rondon%2C%2015%2C%20Centro%2C%20S%C3%A3o%20Bernardo%20do%20Campo%20-%20SP%2C%2009720-120%2C%20Brasil&z=16&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell footer-grid">
+      <div>
+        <a class="brand" href="#inicio"><span class="brand-mark" aria-hidden="true">RM</span><span><small>ASSISTÊNCIA TÉCNICA</small>RM Assistência</span></a>
+        <p class="footer-copy">Assistência técnica para celulares, tablets, computadores, notebooks, videogames e controles. Também trabalhamos com aparelhos novos e usados.</p>
+      </div>
+      <div class="footer-links">
+        <a href="https://wa.me/5511994358861" target="_blank" rel="noopener noreferrer"><svg class="whatsapp-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M16.02 3C8.83 3 3 8.83 3 16.02c0 2.3.6 4.54 1.74 6.51L3 29l6.66-1.7a12.96 12.96 0 0 0 6.36 1.66h.01C23.2 28.96 29 23.18 29 16S23.2 3 16.02 3Zm0 23.77c-2 0-3.96-.54-5.67-1.55l-.4-.24-3.95 1.01 1.06-3.85-.26-.4a10.71 10.71 0 1 1 9.22 5.03Zm5.87-8.02c-.32-.16-1.88-.93-2.17-1.04-.29-.11-.5-.16-.71.16-.21.32-.81 1.04-.99 1.25-.18.21-.36.24-.68.08-.32-.16-1.33-.49-2.54-1.57-.94-.84-1.58-1.88-1.76-2.2-.18-.32-.02-.49.14-.65.14-.14.32-.36.48-.54.16-.18.21-.32.32-.53.11-.21.05-.4-.03-.56-.08-.16-.71-1.71-.97-2.34-.26-.62-.52-.53-.71-.54h-.61c-.21 0-.56.08-.85.4-.29.32-1.12 1.09-1.12 2.65s1.15 3.06 1.31 3.28c.16.21 2.26 3.45 5.47 4.84.76.33 1.36.53 1.82.68.77.24 1.47.21 2.02.13.62-.09 1.88-.77 2.15-1.52.26-.75.26-1.39.18-1.52-.08-.13-.29-.21-.61-.37Z"/></svg> (11) 99435-8861</a>
+        <a href="https://www.instagram.com/rm_assistencia/" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">◎</span> @rm_assistencia</a>
+        <a href="#localizacao"><span aria-hidden="true">●</span> Como chegar</a>
+      </div>
+    </div>
+    <div class="shell copyright">© <span id="year"></span> RM Assistência. Todos os direitos reservados.</div>
+  </footer>
+
+  <a class="whatsapp-float" href="https://wa.me/5511994358861?text=Olá!%20Quero%20solicitar%20um%20orçamento." target="_blank" rel="noopener noreferrer" aria-label="Falar com a RM Assistência pelo WhatsApp"><svg class="whatsapp-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M16.02 3C8.83 3 3 8.83 3 16.02c0 2.3.6 4.54 1.74 6.51L3 29l6.66-1.7a12.96 12.96 0 0 0 6.36 1.66h.01C23.2 28.96 29 23.18 29 16S23.2 3 16.02 3Zm0 23.77c-2 0-3.96-.54-5.67-1.55l-.4-.24-3.95 1.01 1.06-3.85-.26-.4a10.71 10.71 0 1 1 9.22 5.03Zm5.87-8.02c-.32-.16-1.88-.93-2.17-1.04-.29-.11-.5-.16-.71.16-.21.32-.81 1.04-.99 1.25-.18.21-.36.24-.68.08-.32-.16-1.33-.49-2.54-1.57-.94-.84-1.58-1.88-1.76-2.2-.18-.32-.02-.49.14-.65.14-.14.32-.36.48-.54.16-.18.21-.32.32-.53.11-.21.05-.4-.03-.56-.08-.16-.71-1.71-.97-2.34-.26-.62-.52-.53-.71-.54h-.61c-.21 0-.56.08-.85.4-.29.32-1.12 1.09-1.12 2.65s1.15 3.06 1.31 3.28c.16.21 2.26 3.45 5.47 4.84.76.33 1.36.53 1.82.68.77.24 1.47.21 2.02.13.62-.09 1.88-.77 2.15-1.52.26-.75.26-1.39.18-1.52-.08-.13-.29-.21-.61-.37Z"/></svg></a>
+
+  <script>
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    document.querySelectorAll('[data-image-slot] img').forEach((image) => {
+      image.addEventListener('load', () => image.parentElement.classList.add('has-image'));
+      image.addEventListener('error', () => image.remove());
+    });
+
+    const revealItems = document.querySelectorAll('[data-reveal]');
+    if (reduceMotion || !('IntersectionObserver' in window)) {
+      revealItems.forEach((item) => item.classList.add('is-visible'));
+    } else {
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: .14 });
+      revealItems.forEach((item) => revealObserver.observe(item));
+    }
+
+    if (!reduceMotion && window.matchMedia('(hover: hover)').matches) {
+      document.querySelectorAll('[data-tilt]').forEach((card) => {
+        const reset = () => { card.style.transform = ''; };
+        card.addEventListener('pointermove', (event) => {
+          const bounds = card.getBoundingClientRect();
+          const x = (event.clientX - bounds.left) / bounds.width;
+          const y = (event.clientY - bounds.top) / bounds.height;
+          const rotateY = (x - .5) * 12;
+          const rotateX = (y - .5) * -12;
+          card.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
+        });
+        card.addEventListener('pointerleave', reset);
+        card.addEventListener('pointercancel', reset);
+      });
+    } else {
+      document.querySelectorAll('[data-tilt]').forEach((card) => {
+        card.addEventListener('click', () => {
+          document.querySelectorAll('[data-tilt]').forEach((item) => item.classList.remove('touch-active'));
+          card.classList.add('touch-active');
+          card.style.transform = 'perspective(900px) rotateX(2deg) rotateY(-3deg) translateY(-4px)';
+          window.setTimeout(() => { card.style.transform = ''; }, 500);
+        });
+      });
+    }
+  </script>
+</body>
+</html>
