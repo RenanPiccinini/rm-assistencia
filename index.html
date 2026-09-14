@@ -160,6 +160,19 @@
     .portfolio-card::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(to top, rgba(3,6,3,.96), rgba(3,6,3,.03) 72%); }
     .portfolio-card .gallery-caption { z-index: 1; }
 
+    .sales { padding-top: 1rem; }
+    .sales-heading { margin-top: 3.5rem; }
+    .brand-list { display: flex; flex-wrap: wrap; gap: .55rem; margin-top: .2rem; }
+    .brand-list span { padding: .45rem .7rem; border: 1px solid var(--line); color: var(--chalk); background: rgba(18, 27, 18, .8); font-size: .72rem; font-weight: 900; }
+    .sales-grid { display: grid; gap: .8rem; }
+    .sale-card { position: relative; min-height: 395px; overflow: hidden; border: 1px solid var(--line); background: var(--panel-raised); }
+    .sale-card img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
+    .sale-card:hover img { transform: scale(1.04); }
+    .sale-card::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(to top, rgba(3,6,3,.98), rgba(3,6,3,.08) 70%); }
+    .sale-card .gallery-caption { z-index: 1; }
+    .sales-cta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 1.25rem; padding: 1.2rem; border: 1px solid var(--line); background: linear-gradient(120deg, rgba(167,242,42,.12), rgba(12,18,12,.88) 52%); }
+    .sales-cta p { max-width: 39rem; margin: 0; color: var(--muted); line-height: 1.5; }
+
     .video-section { padding-top: 3.4rem; }
     .video-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .8rem; }
     .video-card { position: relative; display: flex; min-height: 246px; padding: 0; overflow: hidden; border: 1px solid rgba(246,248,239,.18); color: var(--chalk); background: linear-gradient(145deg, #172317, #080d08); text-align: left; cursor: pointer; }
@@ -226,6 +239,7 @@
       .gallery-card.tall { grid-row: span 2; }
       .portfolio-grid { grid-template-columns: 1.15fr .85fr; grid-template-rows: repeat(2, 1fr); }
       .portfolio-card:first-child { grid-row: span 2; }
+      .sales-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .video-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .location-grid { grid-template-columns: .85fr 1.15fr; }
       .footer-grid { grid-template-columns: 1.25fr .75fr; }
@@ -246,6 +260,8 @@
       .gallery-card:nth-child(2), .gallery-card:nth-child(3) { min-height: 0; }
       .portfolio-grid { grid-template-columns: 1.2fr .8fr .8fr; grid-template-rows: repeat(2, 1fr); }
       .portfolio-card:first-child { grid-row: span 2; }
+      .sales-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .sale-card { min-height: 355px; }
       .video-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
       .footer { padding-bottom: 3rem; }
     }
@@ -264,6 +280,7 @@
       </a>
       <div class="nav-links">
         <a href="#servicos">Serviços</a>
+        <a href="#vendas">Aparelhos</a>
         <a href="#garantia">Garantia</a>
         <a href="#parceiros">Parceiros</a>
         <a href="#videos">Vídeos</a>
@@ -319,6 +336,33 @@
         <article class="service-card" data-tilt data-reveal><span class="card-number">04</span><div class="service-icon" aria-hidden="true">▰</div><h3>Desbloqueios</h3><p>Desbloqueios em geral: FRP, MDM, PAYJOY e outros, com orientação técnica responsável.</p></article>
       </div>
       <p class="tap-note">No celular, toque em um card para ativar a interação.</p>
+    </section>
+
+    <section class="sales shell" id="vendas" aria-labelledby="vendas-titulo">
+      <div class="section-heading sales-heading" data-reveal>
+        <div class="kicker">Aparelhos para venda</div>
+        <h2 id="vendas-titulo">Seu próximo aparelho está <span class="lime">aqui.</span></h2>
+        <p>Trabalhamos com opções novas e usadas. Consulte a RM Assistência para confirmar modelo, configuração, condição, preço e disponibilidade.</p>
+        <div class="brand-list" aria-label="Marcas atendidas">
+          <span>Apple</span><span>Xiaomi</span><span>Samsung</span><span>Motorola</span>
+        </div>
+      </div>
+      <div class="sales-grid">
+        <article class="sale-card" data-reveal><img src="assets/produtos/apple-iphone-caixa.jpeg" alt="Caixa de iPhone Apple disponível para consulta na RM Assistência" loading="lazy" decoding="async" /><div class="gallery-caption"><span>Apple</span><h3>iPhone</h3></div></article>
+        <article class="sale-card" data-reveal><img src="assets/produtos/xiaomi-poco-c85.jpeg" alt="Caixa do Xiaomi Poco C85 disponível para consulta na RM Assistência" loading="lazy" decoding="async" /><div class="gallery-caption"><span>Xiaomi</span><h3>Poco C85</h3></div></article>
+        <article class="sale-card" data-reveal><img src="assets/produtos/apple-iphones-vitrine.jpeg" alt="Caixas de iPhones Apple em vitrine na RM Assistência" loading="lazy" decoding="async" /><div class="gallery-caption"><span>Apple</span><h3>Opções em iPhone</h3></div></article>
+        <article class="sale-card" data-reveal><img src="assets/produtos/xiaomi-redmi-note-15.jpeg" alt="Caixa do Xiaomi Redmi Note 15 disponível para consulta na RM Assistência" loading="lazy" decoding="async" /><div class="gallery-caption"><span>Xiaomi</span><h3>Redmi Note 15</h3></div></article>
+        <article class="sale-card" data-reveal><img src="assets/produtos/xiaomi-redmi-15c.jpeg" alt="Caixa do Xiaomi Redmi 15C disponível para consulta na RM Assistência" loading="lazy" decoding="async" /><div class="gallery-caption"><span>Xiaomi</span><h3>Redmi 15C</h3></div></article>
+        <article class="sale-card" data-reveal><img src="assets/produtos/xiaomi-redmi-a5.jpeg" alt="Caixa do Xiaomi Redmi A5 disponível para consulta na RM Assistência" loading="lazy" decoding="async" /><div class="gallery-caption"><span>Xiaomi</span><h3>Redmi A5</h3></div></article>
+        <article class="sale-card" data-reveal><img src="assets/produtos/apple-iphones-duo.jpeg" alt="Duas caixas de iPhones Apple disponíveis para consulta na RM Assistência" loading="lazy" decoding="async" /><div class="gallery-caption"><span>Apple</span><h3>Mais opções Apple</h3></div></article>
+        <article class="sale-card" data-reveal><img src="assets/produtos/xiaomi-redmi-note-14.jpeg" alt="Caixa do Xiaomi Redmi Note 14 5G disponível para consulta na RM Assistência" loading="lazy" decoding="async" /><div class="gallery-caption"><span>Xiaomi</span><h3>Redmi Note 14</h3></div></article>
+        <article class="sale-card" data-reveal><img src="assets/produtos/apple-iphone-14-pro-max.jpeg" alt="Caixa de iPhone 14 Pro Max disponível para consulta na RM Assistência" loading="lazy" decoding="async" /><div class="gallery-caption"><span>Apple</span><h3>iPhone 14 Pro Max</h3></div></article>
+        <article class="sale-card" data-reveal><img src="assets/produtos/xiaomi-redmi-pad-2.jpeg" alt="Caixa do Xiaomi Redmi Pad 2 disponível para consulta na RM Assistência" loading="lazy" decoding="async" /><div class="gallery-caption"><span>Xiaomi</span><h3>Redmi Pad 2</h3></div></article>
+      </div>
+      <div class="sales-cta" data-reveal>
+        <p>Quer encontrar o aparelho ideal? Fale com a gente e consulte as opções Apple, Xiaomi, Samsung e Motorola disponíveis hoje.</p>
+        <a class="cta cta-primary" href="https://wa.me/5511994358861?text=Olá!%20Gostaria%20de%20saber%20quais%20aparelhos%20estão%20disponíveis%20para%20venda." target="_blank" rel="noopener noreferrer"><svg class="whatsapp-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M16.02 3C8.83 3 3 8.83 3 16.02c0 2.3.6 4.54 1.74 6.51L3 29l6.66-1.7a12.96 12.96 0 0 0 6.36 1.66h.01C23.2 28.96 29 23.18 29 16S23.2 3 16.02 3Zm0 23.77c-2 0-3.96-.54-5.67-1.55l-.4-.24-3.95 1.01 1.06-3.85-.26-.4a10.71 10.71 0 1 1 9.22 5.03Zm5.87-8.02c-.32-.16-1.88-.93-2.17-1.04-.29-.11-.5-.16-.71.16-.21.32-.81 1.04-.99 1.25-.18.21-.36.24-.68.08-.32-.16-1.33-.49-2.54-1.57-.94-.84-1.58-1.88-1.76-2.2-.18-.32-.02-.49.14-.65.14-.14.32-.36.48-.54.16-.18.21-.32.32-.53.11-.21.05-.4-.03-.56-.08-.16-.71-1.71-.97-2.34-.26-.62-.52-.53-.71-.54h-.61c-.21 0-.56.08-.85.4-.29.32-1.12 1.09-1.12 2.65s1.15 3.06 1.31 3.28c.16.21 2.26 3.45 5.47 4.84.76.33 1.36.53 1.82.68.77.24 1.47.21 2.02.13.62-.09 1.88-.77 2.15-1.52.26-.75.26-1.39.18-1.52-.08-.13-.29-.21-.61-.37Z"/></svg> Consultar aparelhos</a>
+      </div>
     </section>
 
     <section class="proof shell" id="garantia">
