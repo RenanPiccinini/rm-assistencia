@@ -151,6 +151,38 @@
     .gallery-caption span { color: var(--lime); font-size: .7rem; font-weight: 900; }
     .gallery-caption h3 { margin: .35rem 0 0; font-size: 2rem; }
 
+    .portfolio { padding-bottom: 1.6rem; }
+    .portfolio-heading { margin-top: 4.5rem; }
+    .portfolio-grid { display: grid; gap: .8rem; }
+    .portfolio-card { position: relative; min-height: 285px; overflow: hidden; border: 1px solid var(--line); background: var(--panel-raised); }
+    .portfolio-card:first-child { min-height: 430px; }
+    .portfolio-card img { width: 100%; height: 100%; object-fit: cover; }
+    .portfolio-card::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(to top, rgba(3,6,3,.96), rgba(3,6,3,.03) 72%); }
+    .portfolio-card .gallery-caption { z-index: 1; }
+
+    .video-section { padding-top: 3.4rem; }
+    .video-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .8rem; }
+    .video-card { position: relative; display: flex; min-height: 246px; padding: 0; overflow: hidden; border: 1px solid rgba(246,248,239,.18); color: var(--chalk); background: linear-gradient(145deg, #172317, #080d08); text-align: left; cursor: pointer; }
+    .video-card::before { content: ""; position: absolute; inset: 0; background: linear-gradient(145deg, rgba(167,242,42,.15), transparent 42%, rgba(0,0,0,.4)); transition: opacity .22s ease; }
+    .video-card:hover::before { opacity: .35; }
+    .video-card-inner { position: relative; z-index: 1; display: flex; flex-direction: column; justify-content: space-between; width: 100%; padding: 1rem; }
+    .video-card-index { color: var(--lime); font-size: .68rem; font-weight: 900; letter-spacing: .06em; }
+    .video-play { display: grid; place-items: center; width: 3.1rem; aspect-ratio: 1; border: 1px solid var(--lime); color: var(--lime); background: rgba(5,8,5,.78); transition: transform .22s ease, background .22s ease; }
+    .video-card:hover .video-play { color: var(--ink); background: var(--lime); transform: scale(1.08); }
+    .video-card h3 { max-width: 13ch; margin: .9rem 0 .4rem; font-size: clamp(1.3rem, 4vw, 1.75rem); }
+    .video-card p { margin: 0; color: var(--muted); font-size: .76rem; line-height: 1.45; }
+    .video-card-action { margin-top: .8rem; color: var(--lime); font-size: .72rem; font-weight: 900; }
+
+    .video-dialog { width: min(calc(100% - 2rem), 920px); max-width: 920px; padding: 0; border: 1px solid var(--line); color: var(--chalk); background: #080d08; box-shadow: 0 30px 100px rgba(0,0,0,.7); }
+    .video-dialog::backdrop { background: rgba(0,0,0,.82); backdrop-filter: blur(5px); }
+    .video-dialog-content { display: grid; gap: 1rem; padding: 1rem; }
+    .video-dialog-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
+    .video-dialog-header p { margin: .45rem 0 0; color: var(--muted); font-size: .85rem; line-height: 1.45; }
+    .dialog-close { display: grid; place-items: center; flex: 0 0 auto; width: 2.7rem; aspect-ratio: 1; border: 1px solid var(--line); color: var(--chalk); background: transparent; cursor: pointer; font-size: 1.2rem; }
+    .dialog-close:hover { color: var(--ink); background: var(--lime); }
+    .video-player { display: block; width: 100%; max-height: min(70vh, 720px); background: #000; }
+    body.modal-open { overflow: hidden; }
+
     .location { padding-bottom: 6rem; }
     .location-grid { display: grid; gap: 1rem; align-items: stretch; }
     .address { display: flex; flex-direction: column; padding: clamp(1.6rem, 5vw, 3rem); background: #f2f7e9; color: var(--ink); }
@@ -190,6 +222,9 @@
       .services-grid { grid-template-columns: repeat(2, 1fr); }
       .gallery-grid { grid-template-columns: 1fr 1fr; }
       .gallery-card.tall { grid-row: span 2; }
+      .portfolio-grid { grid-template-columns: 1.15fr .85fr; grid-template-rows: repeat(2, 1fr); }
+      .portfolio-card:first-child { grid-row: span 2; }
+      .video-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .location-grid { grid-template-columns: .85fr 1.15fr; }
       .footer-grid { grid-template-columns: 1.25fr .75fr; }
     }
@@ -206,6 +241,9 @@
       .gallery-grid { grid-template-columns: 1.25fr .9fr .9fr; grid-template-rows: 1fr 1fr; }
       .gallery-card.tall { grid-row: span 2; }
       .gallery-card:nth-child(2), .gallery-card:nth-child(3) { min-height: 0; }
+      .portfolio-grid { grid-template-columns: 1.2fr .8fr .8fr; grid-template-rows: repeat(2, 1fr); }
+      .portfolio-card:first-child { grid-row: span 2; }
+      .video-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
       .footer { padding-bottom: 3rem; }
     }
     @media (prefers-reduced-motion: reduce) {
@@ -226,6 +264,7 @@
         <a href="#servicos">Serviços</a>
         <a href="#garantia">Garantia</a>
         <a href="#parceiros">Parceiros</a>
+        <a href="#videos">Vídeos</a>
         <a href="#localizacao">Localização</a>
       </div>
       <a class="nav-action" href="https://www.instagram.com/rm_assistencia/" target="_blank" rel="noopener noreferrer">Instagram</a>
@@ -303,23 +342,54 @@
       <div class="section-heading" data-reveal>
         <div class="kicker">Estrutura e resultados</div>
         <h2 id="galeria-titulo">Tecnologia que volta a <span class="lime">funcionar.</span></h2>
+        <p>Registros reais da bancada, dos equipamentos e do cuidado presente em cada atendimento da RM Assistência.</p>
       </div>
       <div class="gallery-grid">
         <article class="gallery-card tall" data-reveal>
-          <!-- Insira a foto da placa aberta enviada. -->
-          <div class="image-slot" data-image-slot><img class="img-reparo-placa" src="assets/reparo-em-placa.jpg" alt="Reparo técnico em placa de celular" /></div>
+          <div class="image-slot" data-image-slot><img src="assets/reparo-em-placa.jpg" alt="Reparo técnico em placa de celular" loading="lazy" decoding="async" /></div>
           <div class="gallery-caption"><span>Reparo técnico</span><h3>Precisão em cada componente.</h3></div>
         </article>
         <article class="gallery-card" data-reveal>
-          <!-- Insira a arte de upgrades PC Gamer enviada. -->
-          <div class="image-slot" data-image-slot><img class="img-promo-1" src="assets/promo-upgrade-pc-gamer.jpg" alt="Upgrade para computador gamer" /></div>
+          <div class="image-slot" data-image-slot><img src="assets/promo-upgrade-pc-gamer.jpg" alt="Upgrade para computador gamer" loading="lazy" decoding="async" /></div>
           <div class="gallery-caption"><span>Computadores</span><h3>Mais potência para sua rotina.</h3></div>
         </article>
         <article class="gallery-card" data-reveal>
-          <!-- Insira a arte do iPhone com tela quebrada enviada. -->
-          <div class="image-slot" data-image-slot><img class="img-promo-2" src="assets/promo-troca-de-tela.jpg" alt="Troca de tela de celular" /></div>
+          <div class="image-slot" data-image-slot><img src="assets/promo-troca-de-tela.jpg" alt="Troca de tela de celular" loading="lazy" decoding="async" /></div>
           <div class="gallery-caption"><span>Celulares</span><h3>Sua tela nova começa aqui.</h3></div>
         </article>
+      </div>
+    </section>
+
+    <section class="portfolio shell" aria-labelledby="portfolio-titulo">
+      <div class="section-heading portfolio-heading" data-reveal>
+        <div class="kicker">Nossa estrutura em ação</div>
+        <h2 id="portfolio-titulo">Serviços reais, do diagnóstico à <span class="lime">solução.</span></h2>
+      </div>
+      <div class="portfolio-grid">
+        <article class="portfolio-card" data-reveal><img src="assets/fotos/rm-servico-01.jpeg" alt="Celular conectado durante teste de carregamento na bancada da RM Assistência" loading="lazy" decoding="async" /><div class="gallery-caption"><span>Teste de carga</span><h3>Diagnóstico com atenção aos detalhes.</h3></div></article>
+        <article class="portfolio-card" data-reveal><img src="assets/fotos/rm-servico-02.jpeg" alt="Baterias de tablet em manutenção diante da placa da RM Assistência" loading="lazy" decoding="async" /><div class="gallery-caption"><span>Tablets</span><h3>Componentes tratados com cuidado.</h3></div></article>
+        <article class="portfolio-card" data-reveal><img src="assets/fotos/rm-servico-03.jpeg" alt="Discos rígidos avaliados na bancada da RM Assistência" loading="lazy" decoding="async" /><div class="gallery-caption"><span>Computadores</span><h3>Armazenamento e manutenção em dia.</h3></div></article>
+        <article class="portfolio-card" data-reveal><img src="assets/fotos/rm-servico-04.jpeg" alt="Notebook Dell durante instalação do Windows 11 na assistência técnica" loading="lazy" decoding="async" /><div class="gallery-caption"><span>Notebooks</span><h3>Software pronto para trabalhar.</h3></div></article>
+      </div>
+    </section>
+
+    <section class="video-section shell" id="videos" aria-labelledby="videos-titulo">
+      <div class="section-heading" data-reveal>
+        <div class="kicker">Reparos reais em vídeo</div>
+        <h2 id="videos-titulo">Veja a técnica em <span class="lime">movimento.</span></h2>
+        <p>Selecione um registro para assistir. O vídeo só é carregado depois do seu clique, preservando seus dados móveis.</p>
+      </div>
+      <div class="video-grid">
+        <button class="video-card" type="button" data-video-src="assets/videos/reparo-01.mp4" data-video-title="Reparo técnico 01" data-video-description="Registro real da bancada da RM Assistência." aria-haspopup="dialog" data-reveal><span class="video-card-inner"><span class="video-card-index">VÍDEO 01/10</span><span class="video-play" aria-hidden="true">▶</span><span><h3>Reparo técnico 01</h3><p>Veja o processo realizado na bancada.</p><span class="video-card-action">Assistir vídeo →</span></span></span></button>
+        <button class="video-card" type="button" data-video-src="assets/videos/reparo-02.mp4" data-video-title="Reparo técnico 02" data-video-description="Registro real da bancada da RM Assistência." aria-haspopup="dialog" data-reveal><span class="video-card-inner"><span class="video-card-index">VÍDEO 02/10</span><span class="video-play" aria-hidden="true">▶</span><span><h3>Reparo técnico 02</h3><p>Mais um atendimento realizado pela equipe.</p><span class="video-card-action">Assistir vídeo →</span></span></span></button>
+        <button class="video-card" type="button" data-video-src="assets/videos/reparo-03.mp4" data-video-title="Reparo técnico 03" data-video-description="Registro real da bancada da RM Assistência." aria-haspopup="dialog" data-reveal><span class="video-card-inner"><span class="video-card-index">VÍDEO 03/10</span><span class="video-play" aria-hidden="true">▶</span><span><h3>Reparo técnico 03</h3><p>Técnica e cuidado em cada etapa.</p><span class="video-card-action">Assistir vídeo →</span></span></span></button>
+        <button class="video-card" type="button" data-video-src="assets/videos/reparo-04.mp4" data-video-title="Reparo técnico 04" data-video-description="Registro real da bancada da RM Assistência." aria-haspopup="dialog" data-reveal><span class="video-card-inner"><span class="video-card-index">VÍDEO 04/10</span><span class="video-play" aria-hidden="true">▶</span><span><h3>Reparo técnico 04</h3><p>Atendimento documentado em vídeo.</p><span class="video-card-action">Assistir vídeo →</span></span></span></button>
+        <button class="video-card" type="button" data-video-src="assets/videos/reparo-05.mp4" data-video-title="Reparo técnico 05" data-video-description="Registro real da bancada da RM Assistência." aria-haspopup="dialog" data-reveal><span class="video-card-inner"><span class="video-card-index">VÍDEO 05/10</span><span class="video-play" aria-hidden="true">▶</span><span><h3>Reparo técnico 05</h3><p>Uma rotina feita por quem entende.</p><span class="video-card-action">Assistir vídeo →</span></span></span></button>
+        <button class="video-card" type="button" data-video-src="assets/videos/reparo-06.mp4" data-video-title="Reparo técnico 06" data-video-description="Registro real da bancada da RM Assistência." aria-haspopup="dialog" data-reveal><span class="video-card-inner"><span class="video-card-index">VÍDEO 06/10</span><span class="video-play" aria-hidden="true">▶</span><span><h3>Reparo técnico 06</h3><p>Conheça um pouco do nosso processo.</p><span class="video-card-action">Assistir vídeo →</span></span></span></button>
+        <button class="video-card" type="button" data-video-src="assets/videos/reparo-07.mp4" data-video-title="Reparo técnico 07" data-video-description="Registro real da bancada da RM Assistência." aria-haspopup="dialog" data-reveal><span class="video-card-inner"><span class="video-card-index">VÍDEO 07/10</span><span class="video-play" aria-hidden="true">▶</span><span><h3>Reparo técnico 07</h3><p>Equipamentos recebendo a atenção certa.</p><span class="video-card-action">Assistir vídeo →</span></span></span></button>
+        <button class="video-card" type="button" data-video-src="assets/videos/reparo-08.mp4" data-video-title="Reparo técnico 08" data-video-description="Registro real da bancada da RM Assistência." aria-haspopup="dialog" data-reveal><span class="video-card-inner"><span class="video-card-index">VÍDEO 08/10</span><span class="video-play" aria-hidden="true">▶</span><span><h3>Reparo técnico 08</h3><p>Etapas que fazem a diferença.</p><span class="video-card-action">Assistir vídeo →</span></span></span></button>
+        <button class="video-card" type="button" data-video-src="assets/videos/reparo-09.mp4" data-video-title="Reparo técnico 09" data-video-description="Registro real da bancada da RM Assistência." aria-haspopup="dialog" data-reveal><span class="video-card-inner"><span class="video-card-index">VÍDEO 09/10</span><span class="video-play" aria-hidden="true">▶</span><span><h3>Reparo técnico 09</h3><p>Serviço técnico registrado de perto.</p><span class="video-card-action">Assistir vídeo →</span></span></span></button>
+        <button class="video-card" type="button" data-video-src="assets/videos/reparo-10.mp4" data-video-title="Reparo técnico 10" data-video-description="Registro real da bancada da RM Assistência." aria-haspopup="dialog" data-reveal><span class="video-card-inner"><span class="video-card-index">VÍDEO 10/10</span><span class="video-play" aria-hidden="true">▶</span><span><h3>Reparo técnico 10</h3><p>Mais um resultado da RM Assistência.</p><span class="video-card-action">Assistir vídeo →</span></span></span></button>
       </div>
     </section>
 
@@ -335,6 +405,20 @@
       </div>
     </section>
   </main>
+
+  <dialog class="video-dialog" id="video-dialog" aria-labelledby="video-dialog-title" aria-describedby="video-dialog-description">
+    <div class="video-dialog-content">
+      <div class="video-dialog-header">
+        <div>
+          <div class="kicker">Portfólio RM Assistência</div>
+          <h2 id="video-dialog-title">Reparo técnico</h2>
+          <p id="video-dialog-description">Registro real da bancada da RM Assistência.</p>
+        </div>
+        <button class="dialog-close" type="button" aria-label="Fechar vídeo">×</button>
+      </div>
+      <video class="video-player" controls playsinline preload="none"></video>
+    </div>
+  </dialog>
 
   <footer class="footer">
     <div class="shell footer-grid">
@@ -358,8 +442,10 @@
     document.getElementById('year').textContent = new Date().getFullYear();
 
     document.querySelectorAll('[data-image-slot] img').forEach((image) => {
-      image.addEventListener('load', () => image.parentElement.classList.add('has-image'));
+      const revealImage = () => image.parentElement.classList.add('has-image');
+      image.addEventListener('load', revealImage);
       image.addEventListener('error', () => image.remove());
+      if (image.complete && image.naturalWidth > 0) revealImage();
     });
 
     const revealItems = document.querySelectorAll('[data-reveal]');
@@ -401,6 +487,49 @@
         });
       });
     }
+
+    const videoDialog = document.getElementById('video-dialog');
+    const videoPlayer = videoDialog.querySelector('.video-player');
+    const closeVideoDialog = videoDialog.querySelector('.dialog-close');
+    const videoTitle = document.getElementById('video-dialog-title');
+    const videoDescription = document.getElementById('video-dialog-description');
+    let videoTrigger = null;
+
+    const closeVideo = () => {
+      if (!videoDialog.open) return;
+      videoPlayer.pause();
+      videoPlayer.removeAttribute('src');
+      videoPlayer.load();
+      videoDialog.close();
+    };
+
+    document.querySelectorAll('[data-video-src]').forEach((card) => {
+      card.addEventListener('click', () => {
+        videoTrigger = card;
+        videoTitle.textContent = card.dataset.videoTitle;
+        videoDescription.textContent = card.dataset.videoDescription;
+        videoPlayer.autoplay = true;
+        videoPlayer.muted = false;
+        videoPlayer.src = card.dataset.videoSrc;
+        videoPlayer.load();
+        videoDialog.showModal();
+        document.body.classList.add('modal-open');
+        videoPlayer.play().catch(() => {
+          videoPlayer.muted = true;
+          videoPlayer.play().catch(() => {});
+        });
+        closeVideoDialog.focus();
+      });
+    });
+
+    closeVideoDialog.addEventListener('click', closeVideo);
+    videoDialog.addEventListener('click', (event) => {
+      if (event.target === videoDialog) closeVideo();
+    });
+    videoDialog.addEventListener('close', () => {
+      document.body.classList.remove('modal-open');
+      if (videoTrigger) videoTrigger.focus();
+    });
   </script>
 </body>
 </html>
