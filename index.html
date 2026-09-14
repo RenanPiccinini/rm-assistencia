@@ -62,9 +62,9 @@
 
     .site-header { position: absolute; z-index: 20; inset: 0 0 auto; padding-block: 1.1rem; }
     .nav { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
-    .brand { display: inline-flex; align-items: center; gap: .7rem; font-weight: 900; letter-spacing: -.06em; font-size: 1.15rem; }
-    .brand-mark { display: grid; place-items: center; width: 2.6rem; aspect-ratio: 1; background: var(--lime); color: var(--ink); clip-path: polygon(22% 0, 100% 0, 100% 78%, 78% 100%, 0 100%, 0 22%); font-size: 1.05rem; }
-    .brand small { display: block; color: var(--lime); font-size: .54rem; letter-spacing: .18em; margin-bottom: .18rem; }
+    .brand { display: inline-flex; flex: 0 0 auto; align-items: center; }
+    .brand-logo { width: clamp(3.25rem, 7vw, 4.6rem); max-width: none; height: auto; border: 1px solid rgba(167,242,42,.34); }
+    .footer .brand-logo { width: 5.4rem; }
     .nav-links { display: none; gap: 1.4rem; color: var(--muted); font-size: .86rem; font-weight: 700; }
     .nav-links a:hover { color: var(--lime); }
     .nav-action { padding: .65rem .82rem; border: 1px solid var(--line); color: var(--lime); font-size: .76rem; font-weight: 800; white-space: nowrap; }
@@ -257,8 +257,7 @@
   <header class="site-header">
     <nav class="nav shell" aria-label="Navegação principal">
       <a class="brand" href="#inicio" aria-label="RM Assistência - início">
-        <span class="brand-mark" aria-hidden="true">RM</span>
-        <span><small>ASSISTÊNCIA TÉCNICA</small>RM Assistência</span>
+        <img class="brand-logo" src="assets/logo-rm-assistencia.jpeg" alt="RM Assistência Técnica Especializada" />
       </a>
       <div class="nav-links">
         <a href="#servicos">Serviços</a>
@@ -423,7 +422,7 @@
   <footer class="footer">
     <div class="shell footer-grid">
       <div>
-        <a class="brand" href="#inicio"><span class="brand-mark" aria-hidden="true">RM</span><span><small>ASSISTÊNCIA TÉCNICA</small>RM Assistência</span></a>
+        <a class="brand" href="#inicio" aria-label="RM Assistência - início"><img class="brand-logo" src="assets/logo-rm-assistencia.jpeg" alt="RM Assistência Técnica Especializada" loading="lazy" decoding="async" /></a>
         <p class="footer-copy">Assistência técnica para celulares, tablets, computadores, notebooks, videogames e controles. Também trabalhamos com aparelhos novos e usados.</p>
       </div>
       <div class="footer-links">
